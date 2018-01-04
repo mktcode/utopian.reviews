@@ -4,4 +4,4 @@ var config = {
     }
 };
 
-modules.exports = config;
+module.exports = config;
