@@ -1,0 +1,7 @@
+var config = {
+    app: {
+        port: 5555
+    }
+};
+
+modules.exports = config;
