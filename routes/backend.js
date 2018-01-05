@@ -10,7 +10,6 @@ router.get('/', function (req, res) {
         Promise.all([
             utopian.getPendingPostsByModerator(req.session.steem.name)
         ]).then((responses) => {
-            console.log(responses[0].total)
             res.render('index', {steem:req.session.steem, pending_posts: responses[0]});
         });
     }
