@@ -1,6 +1,16 @@
 {% extends 'layout.twig' %}
 
-{% block body %}
-  <h1>{{title}}</h1>
-  <p>Welcome to {{title}}</p>
+{% block content %}
+    <div class="row">
+        <div class="col-lg-4">
+            <!-- small box -->
+            <div class="small-box" style="background: url('https://cdn.mxone.host/steemit_banner.jpg?v=2.1.2');">
+                <div class="inner" style="text-align:center;background: rgba(255,255,255,0.6);">
+                    <h3>{{ pending_posts.total }}</h3>
+                    <p>Pending posts</p>
+                </div>
+
+            </div>
+        </div>
+    </div>
 {% endblock %}

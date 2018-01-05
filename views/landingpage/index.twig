@@ -1,22 +1,28 @@
-{% extends '../layout.twig' %}
+{% extends './layout.twig' %}
 {% block title %}Utopian.Reviews - The tool all mods waited for!{% endblock %}
 {% block body %}
     <div id="content" class="overlay">
         <!-- Overlay content -->
         <div class="overlay-content">
             <img src="https://xzor.xyz/ipfs/QmaLaRg4Pt6AvfYNoLp41e2ru9T6qk5Qz8ZziGWJzqKQhJ" width="250">
+            {% if noMod == true %}
+                <div class="row">
+                    <div class="col-md-4 col-md-push-4">
+                        <div class="alert alert-danger">
+                            <b>"{{ username }}" is not an utopian mod!</b>
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
             <h1>Welcome to utopian.reviews</h1>
             <h4><i>Reviews made easy</i></h4>
             <hr style="width: 50px"/>
             <div class="row">
                 <div class="col-md-4 col-md-push-4">
-                    {#<a href="/oauth/steem" class="btn btn-steem btn-block">Login with Steemconnect</a>#}
-                    <button class="btn btn-steem btn-block">Login comming soon</button>
+                    <a href="/auth" class="btn btn-steem btn-block">Login with Steemconnect</a>
+                    {#<button class="btn btn-steem btn-block">Login comming soon</button>#}
                 </div>
             </div>
-
-
         </div>
-
     </div>
 {% endblock %}

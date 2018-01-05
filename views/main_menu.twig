@@ -1,0 +1,27 @@
+<ul class="sidebar-menu" data-widget="tree">
+    <li class="header">MAIN NAVIGATION</li>
+    <li class="{% if active == 'dashboard' or active == '' %}active{% endif %}">
+        <a href="/v">
+            <i class="fa fa-dashboard"></i> <span>Dashboard</span>
+        </a>
+    </li>
+    <li class="header">MY REVIEWS</li>
+    <li class="{% if active == 'reviews_my_pending'%}active{% endif %}">
+        <a href="/v/reviews/my/pending">
+            <i class="fa fa-refresh"></i> <span>Pending</span>
+        </a>
+    </li>
+    <li class="{% if active == 'reviews_my_approved'%}active{% endif %}">
+        <a href="/v/reviews/my/approved">
+            <i class="fa fa-shield"></i> <span>Approved</span>
+        </a>
+    </li>
+    <li class="{% if active == 'reviews_my_hidden'%}active{% endif %}">
+        <a href="/v/reviews/my/hidden">
+            <i class="fa fa-refresh"></i> <span>Hidden</span>
+        </a>
+    </li>
+
+
+    {#class="fa fa-cogs"></i> Settings</a></li>#}
+</ul>

@@ -1,6 +1,13 @@
 var config = {
     app: {
         port: 5555
+    },
+    oauth: {
+        client_id: "",
+        redirect_uri: "http://localhost:5555/auth"
+    },
+    session: {
+        secret: "changeme"
     }
 };
 
