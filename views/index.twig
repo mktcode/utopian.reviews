@@ -2,31 +2,26 @@
 
 {% block content %}
     <div class="row">
-        <div class="col-lg-4">
-            <div class="small-box" style="background: url('https://cdn.mxone.host/steemit_banner.jpg?v=2.1.2');">
-                <div class="inner" style="text-align:center;background: rgba(255,255,255,0.6);">
-                    <h3>{{ pending_posts.total }}</h3>
-                    <p>Pending posts</p>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-4">
-            <div class="small-box" style="background: #dd4b39;">
-                <div class="inner" style="text-align:center;background: rgba(255,255,255,0.2);">
-                    <h3>0</h3>
-                    <p>Urgent posts</p>
-                </div>
-            </div>
-        </div>
 
-        <div class="col-lg-4">
+        <div class="col-lg-12">
             <div class="small-box" style="background: url('https://cdn.mxone.host/steemit_banner.jpg?v=2.1.2');">
                 <div class="inner" style="text-align:center;background: rgba(255,255,255,0.6);">
-                    <h3>{{ steem.utopian.user[0].total_moderated }}</h3>
+                    <h3 id="total_moderated"><i class="fa fa-spin fa-spinner"></i></h3>
                     <p>Moderated posts</p>
                 </div>
             </div>
         </div>
 
     </div>
+{% endblock %}
+{% block javascripts %}
+    <script src="/javascripts/dashboard.js"></script>
+<script>
+    $(function() {
+        updateModeratorStatistic("{{ steem.name }}");
+        setInterval(() => {
+            updateModeratorStatistic("{{ steem.name }}");
+        }, 1000);
+    })
+</script>
 {% endblock %}

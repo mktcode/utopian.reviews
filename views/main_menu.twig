@@ -5,12 +5,15 @@
             <i class="fa fa-dashboard"></i> <span>Dashboard</span>
         </a>
     </li>
+    <li class="header">MY TEAM</li>
+    {% for mod in team_members %}
+        <li class="{% if active == 'mod_' ~ mod.account %}active{% endif %}">
+            <a href="/v/user/{{ mod.account }}">
+                <i class="fa fa-user"></i><span>{{ mod.account }}</span>
+            </a>
+        </li>
+    {% endfor %}
     <li class="header">MY REVIEWS</li>
-    <li class="{% if active == 'reviews_my_pending'%}active{% endif %}">
-        <a href="/v/reviews/my/pending">
-            <i class="fa fa-refresh"></i> <span>Pending</span>
-        </a>
-    </li>
     <li class="{% if active == 'reviews_my_approved'%}active{% endif %}">
         <a href="/v/reviews/my/approved">
             <i class="fa fa-shield"></i> <span>Approved</span>

@@ -13,7 +13,9 @@ router.get('/', (req, res) => {
                 res.redirect('/');
             } else {
                 options.username = req.session.noMod;
+                options.username = req.session.noMod ? req.session.noMod : "";
                 req.session.destroy();
+                console.log(options)
                 res.render('landingpage/index', options);
             }
         } else {
