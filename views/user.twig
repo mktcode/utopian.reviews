@@ -18,12 +18,44 @@
         </div>
 
     </div>
+    <div class="row">
+        <div class="col-md-6 col-xs-12">
+            <h3>Accepted Posts</h3>
+            <table  class="table table-bordered">
+                <thead>
+                <tr>
+                    <th>Author</th>
+                    <th>Category</th>
+                    <th>Title</th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody id="accepted_posts"></tbody>
+            </table>
+        </div>
+        <div class="col-md-6 col-xs-12">
+            <h3>Rejected Posts</h3>
+            <table  class="table table-bordered">
+                <thead>
+                <tr>
+                    <th>Author</th>
+                    <th>Category</th>
+                    <th>Title</th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody id="rejected_posts"></tbody>
+            </table>
+        </div>
+    </div>
 {% endblock %}
 {% block javascripts %}
     <script src="/javascripts/dashboard.js"></script>
 <script>
     $(function() {
         updateModeratorStatistic("{{ user }}");
+        getAcceptedPosts("{{ user }}",0,100);
+        getRejectedPosts("{{ user }}",0,100);
         setInterval(() => {
             updateModeratorStatistic("{{ user }}");
         }, 1000);
