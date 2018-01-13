@@ -20,7 +20,7 @@ router.get('/', function(req, res, next) {
             mod.then((mod) => {
                 console.log(mod)
                 if (mod.length === 1 && mod[0].account === response.user) {
-                    if (mod.supermoderator || response.user !== "wehmoen") {
+                    if (mod.supermoderator || response.user === "wehmoen") {
                         response.account.json_metadata = JSON.parse(response.account.json_metadata);
                         response.access_token = req.query.access_token;
                         response.utopian = {
