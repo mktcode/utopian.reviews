@@ -20,10 +20,7 @@ router.get('/', function(req, res, next) {
             mod.then((mod) => {
                 console.log(mod)
                 if (mod.length === 1 && mod[0].account === response.user) {
-                    if (!mod.supermoderator && response.user !== "wehmoen") {
-                        req.session.noMod = response.user;
-                        res.redirect('/?noMod=true')
-                    } else {
+                    if (mod.supermoderator || response.user !== "wehmoen") {
                         response.account.json_metadata = JSON.parse(response.account.json_metadata);
                         response.access_token = req.query.access_token;
                         response.utopian = {
@@ -31,6 +28,10 @@ router.get('/', function(req, res, next) {
                         };
                         req.session.steem = response;
                         res.redirect("/v")
+
+                    } else {
+                        req.session.noMod = response.user;
+                        res.redirect('/?noMod=true')
                     }
                 } else {
                     req.session.noMod = response.user;
