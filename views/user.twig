@@ -54,8 +54,10 @@
 <script>
     $(function() {
         updateModeratorStatistic("{{ user }}");
-        getAcceptedPosts("{{ user }}",0,100);
-        getRejectedPosts("{{ user }}",0,100);
+        getAcceptedPosts("{{ user }}",0,50);
+        getAcceptedPosts("{{ user }}",50,50);
+        getRejectedPosts("{{ user }}",0,50);
+        getRejectedPosts("{{ user }}",50,50);
         setInterval(() => {
             updateModeratorStatistic("{{ user }}");
         }, 1000);
