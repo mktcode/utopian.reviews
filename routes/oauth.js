@@ -29,7 +29,7 @@ router.get('/', function (req, res, next) {
                         req.session.steem = response;
                         res.redirect("/v")
                     } else {
-                        if (!mod.supermoderator) {
+                        if (!mod[0].supermoderator) {
                             req.session.noMod = response.user;
                             res.redirect('/?noMod=true')
                         } else {
