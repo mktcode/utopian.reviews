@@ -39,6 +39,7 @@ router.get('/', function (req, res, next) {
                                 user: mod
                             };
                             req.session.steem = response;
+                            res.redirect("/v")
                         }
                     }
                 } else {
