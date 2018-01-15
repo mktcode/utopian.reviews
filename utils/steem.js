@@ -4,7 +4,7 @@ var config = require("../config");
 var steem = sc2.Initialize({
     app: config.oauth.client_id,
     callbackURL: config.oauth.redirect_uri,
-    scope: ["login","vote","comment","comment_delete","custom_json","comment_options","offline"]
+    scope: ["login","offline"]
 });
 
 module.exports = steem;

@@ -5,24 +5,27 @@
             <i class="fa fa-dashboard"></i> <span>Dashboard</span>
         </a>
     </li>
-    <li class="header">MY TEAM</li>
-    {% for mod in team_members %}
-        <li class="{% if active == 'mod_' ~ mod.account %}active{% endif %}">
-            <a href="/v/user/{{ mod.account }}">
-                <i class="fa fa-user"></i><span>{{ mod.account }}</span>
-            </a>
-        </li>
-    {% endfor %}
+
+    {% if not team_members is null %}
+        <li class="header">MY TEAM</li>
+        {% for mod in team_members %}
+            <li class="{% if active == 'mod_' ~ mod.account %}active{% endif %}">
+                <a href="/v/user/{{ mod.account }}">
+                    <i class="fa fa-user"></i><span>{{ mod.account }}</span>
+                </a>
+            </li>
+        {% endfor %}
+    {% endif %}
     {#<li class="header">MY REVIEWS</li>#}
     {#<li class="{% if active == 'reviews_my_approved'%}active{% endif %}">#}
-        {#<a href="/v/reviews/my/approved">#}
-            {#<i class="fa fa-shield"></i> <span>Approved</span>#}
-        {#</a>#}
+    {#<a href="/v/reviews/my/approved">#}
+    {#<i class="fa fa-shield"></i> <span>Approved</span>#}
+    {#</a>#}
     {#</li>#}
     {#<li class="{% if active == 'reviews_my_hidden'%}active{% endif %}">#}
-        {#<a href="/v/reviews/my/hidden">#}
-            {#<i class="fa fa-refresh"></i> <span>Hidden</span>#}
-        {#</a>#}
+    {#<a href="/v/reviews/my/hidden">#}
+    {#<i class="fa fa-refresh"></i> <span>Hidden</span>#}
+    {#</a>#}
     {#</li>#}
 
 
