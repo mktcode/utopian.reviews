@@ -1,38 +1,50 @@
 function updateModeratorStatistic(moderator) {
-    $.ajax({
-        url: "/api/moderator.json",
-        data: {
-            "account": moderator
-        },
-        success: function(response) {
-            $('#total_moderated').text(response.total_moderated);
-        }
-    })
+  $.ajax({
+    url: "/api/moderator.json",
+    data: {
+      "account": moderator
+    },
+    success: function (response) {
+      $('#total_moderated').text(response.total_moderated);
+    }
+  })
 }
 
 function getAcceptedPosts(username, skip, limit, cb) {
-    $.ajax({
-        url: "/api/posts/accepted/" + username +".json?skip="+skip+"&limit="+limit,
-        success: function(response) {
-            response.results.forEach(function(post) {
-                var created = moment.utc(new Date(post.created)).from(moment.utc().format('YYYY-MM-DD HH:mm:ss'));
-                $('#accepted_posts').append('<tr><td>'+post.author+'</td><td>'+post.category+'</td><td>'+post.title+'</td><td>'+created+'</td><td><a target="_blank" href="//utopian.io'+post.url+'" class="btn btn-default btn-sm">View Post</a></td></tr>')
-              if (typeof cb === "function") cb();
-            })
+
+  $.ajax({
+    url: 'https://api.utopian.io/api/posts?moderator=' + username + '&status=reviewed&skip=' + skip + '&limit=' + limit,
+    success: function (response) {
+      response.results.forEach(function (post) {
+        var created = moment.utc(new Date(post.created)).format('YYYY-MM-DD HH:mm:ss');
+        if (post.json_metadata.moderator.time) {
+          var modDate = moment.utc(new Date(post.json_metadata.moderator.time)).format('YYYY-MM-DD HH:mm:ss');
+        } else {
+          var modDate = "unknown";
         }
-    })
+        $('#accepted_posts').append('<tr><td>' + post.author + '</td><td>' + post.category + '</td><td>' + post.title + '</td><td>' + created + '</td><td>' + modDate + '</td><td><a target="_blank" href="//utopian.io' + post.url + '" class="btn btn-default btn-sm">View Post</a></td></tr>')
+        if (typeof cb === "function") cb();
+      })
+    }
+  })
 }
-function getRejectedPosts(username, skip, limit,cb) {
-    $.ajax({
-        url: "/api/posts/hidden/" + username +".json?skip="+skip+"&limit="+limit,
-        success: function(response) {
-            response.results.forEach(function(post) {
-                var created = moment.utc(new Date(post.created)).from(moment.utc().format('YYYY-MM-DD HH:mm:ss'));
-                $('#rejected_posts').append('<tr><td>'+post.author+'</td><td>'+post.category+'</td><td>'+post.title+'</td><td>'+created+'</td><td><a target="_blank" href="//utopian.io'+post.url+'" class="btn btn-default btn-sm">View Post</a></td></tr>')
-              if (typeof cb === "function") cb();
-            })
+
+function getRejectedPosts(username, skip, limit, cb) {
+  $.ajax({
+    url: 'https://api.utopian.io/api/posts?moderator=' + username + '&status=flagged&skip=' + skip + '&limit=' + limit,
+    success: function (response) {
+      response.results.forEach(function (post) {
+        var created = moment.utc(new Date(post.created)).from(moment.utc().format('YYYY-MM-DD HH:mm:ss'));
+        if (post.json_metadata.moderator.time) {
+          var modDate = moment.utc(new Date(post.json_metadata.moderator.time)).from(moment.utc().format('YYYY-MM-DD HH:mm:ss'));
+        } else {
+          var modDate = "unknown";
         }
-    })
+        $('#rejected_posts').append('<tr><td>' + post.author + '</td><td>' + post.category + '</td><td>' + post.title + '</td><td>' + created + '</td><td>' + modDate + '</td><td><a target="_blank" href="//utopian.io' + post.url + '" class="btn btn-default btn-sm">View Post</a></td></tr>')
+        if (typeof cb === "function") cb();
+      })
+    }
+  })
 }
 
 
