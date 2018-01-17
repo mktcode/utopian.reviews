@@ -15,6 +15,7 @@ function getAcceptedPosts(username, skip, limit, cb) {
   $.ajax({
     url: 'https://api.utopian.io/api/posts?moderator=' + username + '&status=reviewed&skip=' + skip + '&limit=' + limit,
     success: function (response) {
+      $('#accepted_moderated_count').text(response.total)
       response.results.forEach(function (post) {
         var created = moment.utc(new Date(post.created)).format('YYYY-MM-DD HH:mm:ss');
         if (post.json_metadata.moderator.time) {
@@ -34,6 +35,7 @@ function getRejectedPosts(username, skip, limit, cb) {
     url: 'https://api.utopian.io/api/posts?moderator=' + username + '&status=flagged&skip=' + skip + '&limit=' + limit,
     success: function (response) {
       response.results.forEach(function (post) {
+        $('#rejected_moderated_count').text(response.total)
         var created = moment.utc(new Date(post.created)).format('YYYY-MM-DD HH:mm:ss');
         if (post.json_metadata.moderator.time) {
           var modDate = moment.utc(new Date(post.json_metadata.moderator.time)).format('YYYY-MM-DD HH:mm:ss');
