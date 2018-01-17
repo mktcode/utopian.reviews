@@ -22,7 +22,7 @@ function getAcceptedPosts(username, skip, limit, cb) {
         } else {
           var modDate = "unknown";
         }
-        $('#accepted_posts').append('<tr><td>' + post.author + '</td><td>' + post.category + '</td><td>' + post.title + '</td><td>' + created + '</td><td>' + modDate + '</td><td><a target="_blank" href="//utopian.io' + post.url + '" class="btn btn-default btn-sm">View Post</a></td></tr>')
+        $('#accepted_posts').append('<tr><td>' + post.author + '</td><td>' + post.json_metadata.type + '</td><td>' + post.title + '</td><td>' + created + '</td><td>' + modDate + '</td><td><a target="_blank" href="//utopian.io' + post.url + '" class="btn btn-default btn-sm">View Post</a></td></tr>')
         if (typeof cb === "function") cb();
       })
     }
@@ -40,7 +40,7 @@ function getRejectedPosts(username, skip, limit, cb) {
         } else {
           var modDate = "unknown";
         }
-        $('#rejected_posts').append('<tr><td>' + post.author + '</td><td>' + post.category + '</td><td>' + post.title + '</td><td>' + created + '</td><td>' + modDate + '</td><td><a target="_blank" href="//utopian.io' + post.url + '" class="btn btn-default btn-sm">View Post</a></td></tr>')
+        $('#rejected_posts').append('<tr><td>' + post.author + '</td><td>' + post.json_metadata.type + '</td><td>' + post.title + '</td><td>' + created + '</td><td>' + modDate + '</td><td><a target="_blank" href="//utopian.io' + post.url + '" class="btn btn-default btn-sm">View Post</a></td></tr>')
         if (typeof cb === "function") cb();
       })
     }
