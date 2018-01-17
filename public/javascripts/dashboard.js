@@ -36,7 +36,7 @@ function getRejectedPosts(username, skip, limit, cb) {
       response.results.forEach(function (post) {
         var created = moment.utc(new Date(post.created)).format('YYYY-MM-DD HH:mm:ss');
         if (post.json_metadata.moderator.time) {
-          var modDate = moment.utc(new Date(post.json_metadata.moderator.time)).from(moment.utc().format('YYYY-MM-DD HH:mm:ss'));
+          var modDate = moment.utc(new Date(post.json_metadata.moderator.time)).format('YYYY-MM-DD HH:mm:ss');
         } else {
           var modDate = "unknown";
         }
