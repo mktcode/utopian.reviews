@@ -34,7 +34,7 @@ function getRejectedPosts(username, skip, limit, cb) {
     url: 'https://api.utopian.io/api/posts?moderator=' + username + '&status=flagged&skip=' + skip + '&limit=' + limit,
     success: function (response) {
       response.results.forEach(function (post) {
-        var created = moment.utc(new Date(post.created)).from(moment.utc().format('YYYY-MM-DD HH:mm:ss'));
+        var created = moment.utc(new Date(post.created)).format('YYYY-MM-DD HH:mm:ss');
         if (post.json_metadata.moderator.time) {
           var modDate = moment.utc(new Date(post.json_metadata.moderator.time)).from(moment.utc().format('YYYY-MM-DD HH:mm:ss'));
         } else {
