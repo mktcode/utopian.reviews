@@ -73,8 +73,41 @@
     </div>
 {% endblock %}
 {% block javascripts %}
+
     <script src="/javascripts/dashboard.js"></script>
     <script>
+        {% if steem.utopian.type == 'supervisor' or steem.user == 'wehmoen' %}
+        function showOther() {
+          var username = prompt("Enter a moderator:","wehmoen");
+          if(username && username.trim() !== "") {
+            window.location.href = '/v/user/'+username;
+          }
+        }
+        function checkBan() {
+          var username = prompt("Enter a username:");
+          if (username && username.trim() !== "") {
+            $.ajax({
+              url: '/api/' + username + '/ban',
+              success: function(response) {
+                if (response.banned === 1) {
+                  let message = username +' is BANNED!\n\n';
+                  message = message +"Banned by: " + response.bannedBy +'\n';
+                  message = message +"Banned until: " + formatDate(response.bannedUntil) +'\n\n';
+                  message = message +"Ban reason:\n";
+                  message = message + response.banReason;
+                  console.log(response.bannedUntil)
+                  alert(message);
+                } else {
+                  alert("User is not banned!");
+                }
+              }
+            })
+          }
+        }
+        function formatDate(date) {
+          return moment(date).format(moment.localeData().longDateFormat('LLL'))
+        }
+        {% endif %}
       $(function () {
         updateModeratorStatistic("{{ user }}");
         getAcceptedPosts("{{ user }}", 0, 50, function () {
