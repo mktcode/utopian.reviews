@@ -13,7 +13,7 @@ router.get('/', function (req, res) {
       request('https://utopian.team/users/team.json', (err, response, body) => {
         body = JSON.parse(body)
         let sv = req.session.steem.user;
-        if (sv === "wehmoen") sv = "mkt";
+        if (sv === "wehmoen") sv = "mkt"; //yeah admin powers... finally i feel as mighty as mkt
 
         res.render('index', {steem: req.session.steem, team_members: body.results[sv].members});
       });

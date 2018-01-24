@@ -18,10 +18,11 @@ router.get('/', function (req, res, next) {
     steem.me(function (err, response) {
       let mod = utopian.getModerator(response.user);
       mod.then((mod) => {
-          if (mod.length === 1 && mod[0].account === response.user) {
+        console.log(mod)
+          if (mod && mod.account === response.user) {
 
             let type = "supervisor"
-            if (!mod[0].supermoderator) {
+            if (!mod.supermoderator) {
               type = "moderator"
             }
             response.account.json_metadata = JSON.parse(response.account.json_metadata);

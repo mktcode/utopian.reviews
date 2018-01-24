@@ -15,19 +15,17 @@
                 </a>
             </li>
         {% endfor %}
+        <li class="header" title="Wow you hovered the category Oo Yeah you really like the bonus features.... Don't you">BONUS FEATURES</li>
+        <li>
+            <a id="show_other" onclick="showOther();return false;" name="show_other" href="#show_other">
+                <i class="fa fa-user-secret"></i><span>Show Moderator</span>
+            </a>
+        </li>
+        <li>
+            <a id="check-ban" onclick="checkBan();return false;" name="check_ban" href="#check_ban">
+                <i class="fa fa-gavel "></i><span>Check Ban</span>
+            </a>
+        </li>
+
     {% endif %}
-    {#<li class="header">MY REVIEWS</li>#}
-    {#<li class="{% if active == 'reviews_my_approved'%}active{% endif %}">#}
-    {#<a href="/v/reviews/my/approved">#}
-    {#<i class="fa fa-shield"></i> <span>Approved</span>#}
-    {#</a>#}
-    {#</li>#}
-    {#<li class="{% if active == 'reviews_my_hidden'%}active{% endif %}">#}
-    {#<a href="/v/reviews/my/hidden">#}
-    {#<i class="fa fa-refresh"></i> <span>Hidden</span>#}
-    {#</a>#}
-    {#</li>#}
-
-
-    {#class="fa fa-cogs"></i> Settings</a></li>#}
 </ul>
